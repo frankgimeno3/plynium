@@ -17,10 +17,20 @@ const BigMenu: FC = () => {
     <div className="fixed top-14 mt-3 left-0 w-full h-full text-white z-50 flex">
       <div
         className="flex flex-col flex-[3] w-full items-center justify-center border-r border-gray-500"
-        style={{ backgroundColor: 'rgba(23, 23, 23, 0.99)' }}
+        style={{ backgroundColor: 'rgba(23, 23, 23)' }}
       >
+        {section=="home" && <>
         <h1 className="text-4xl font-bold">HOME</h1>
-        <h1 className="text-lg text-center pt-5">Who we are, and what we do</h1>
+        <h1 className="text-lg text-center pt-5">Who we are, and what we do</h1> 
+        </>}
+                {section=="media" && <>
+        <h1 className="text-4xl font-bold">MEDIA</h1>
+        <h1 className="text-lg text-center pt-5">Our media</h1> 
+        </>}
+                {section=="contact" && <>
+        <h1 className="text-4xl font-bold">CONTACT</h1>
+        <h1 className="text-lg text-center pt-5">Contact us</h1> 
+        </>}
       </div>
 
       <div className="flex-[1] w-full flex flex-col items-center justify-center space-y-6 bg-zinc-900">

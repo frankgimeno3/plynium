@@ -18,7 +18,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
   };
   
   return (
-    <nav className='flex flex-row p-5 justify-between bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md" '>
+    <nav className='flex flex-row py-8 px-12 justify-between bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md" '>
       {isMenuOpen && (
         <BigMenu />
       )}
