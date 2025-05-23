@@ -22,7 +22,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
       {isMenuOpen && (
         <BigMenu />
       )}
-        <p>Plynium</p>
+        <p  onClick={() => handleRedirection('/')}>Plynium</p>
       <button className="text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? (
           <svg
