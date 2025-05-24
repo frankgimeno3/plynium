@@ -1,44 +1,46 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react";
 import Hero from "./components/landingComponents/Hero";
+import JoinTeam from "./components/landingComponents/JoinTeam";
+import Services from "./components/landingComponents/Services";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
-  const footerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null); // ← Referencia al video
-  const [isNearFooter, setIsNearFooter] = useState(false);
-
-    useEffect(() => {
-    const handleScroll = () => {
-      if (!footerRef.current) return;
-      const footerTop = footerRef.current.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      setIsNearFooter(footerTop < windowHeight + 60);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5
+      videoRef.current.playbackRate = 0.9;
     }
   }, []);
-  
-  
+
   return (
-    <div className="relative flex flex-col min-h-screen w-full bg-gray-800 text-white opacity-90">
-      <video
-        ref={videoRef}  
+    <div className="relative mx-auto z-10">
+       <video
+        ref={videoRef}
         src="/abstract.mp4"
         autoPlay
         loop
         muted
-        className="fixed top-0 left-0 w-full h-full object-cover z-0"
+        className="fixed top-0 left-0 w-screen h-screen object-cover z-0"
       />
-      <Hero/>
-      <div className="absolute top-0 left-0 w-full h-full bg-zinc-900 opacity-70 z-10" />
+
+       <div className="relative z-10 text-white">
+        <Hero />
+        <div
+          className="bg-gray-100  "
+          style={{
+            position: "relative",
+            zIndex: 10,
+            borderTopLeftRadius: "50% 100px",
+            borderTopRightRadius: "50% 100px",
+                        
+          }}
+        >
+          <Services />
+        </div>
+        <JoinTeam />
+      </div>
     </div>
   );
 }

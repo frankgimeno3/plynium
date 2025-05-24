@@ -52,11 +52,11 @@ const Navbar: FC<NavbarProps> = ({ }) => {
      {isMenuOpen && (
         <BigMenu isAuthenticated={isAuthenticated} />
       )}
- <nav className='flex flex-row py-8 px-12 justify-between bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md' 
+ <nav className='flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md' 
     onClick={()=>handleMenuToggle()}>
      
       <p onClick={handleRedirection}>
-        Plynium
+        PLYNIUM
       </p>
 
       <button className="text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -67,7 +67,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
             height="30"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="white"
+            stroke="black"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -81,7 +81,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
             height="30"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="white"
+            stroke="black"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

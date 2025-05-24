@@ -6,7 +6,7 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = ({ }) => {
   return (
-    <footer className='flex flex-row justify-between p-5 bg-black text-white p-12 px-24'>
+    <footer className='flex flex-row justify-between p-5 bg-black text-white p-12 px-24 p-12 z-50 relative '>
         <div className='flex flex-col w-1/4'>
           <p>Plynium</p>
           <p>Dirección</p>

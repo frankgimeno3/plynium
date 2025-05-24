@@ -43,7 +43,7 @@ const handleLogout = async () => {
   if (isAuthenticated === null) return null;
 
   return (
-    <div className="fixed top-16   left-0 w-full h-full text-white z-50 flex" style={{"marginTop":"30px"}}>
+    <div className="fixed top-16   left-0 w-full h-full text-white z-50 flex" style={{"marginTop":"13px"}}>
       <div
         className="flex flex-col flex-[3] w-full items-center justify-center border-r border-gray-500"
         style={{ backgroundColor: 'rgba(23, 23, 23)' }}
