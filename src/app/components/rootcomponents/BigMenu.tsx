@@ -1,71 +1,110 @@
 'use client';
-import React, { FC  } from 'react';
+import React, { FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUI } from '@/app/components/context/UIContext';  
+import AuthenticationService from '../service/AuthenticationService';
 
-const BigMenu: FC = () => {
+ interface BigMenuProps {
+  isAuthenticated: boolean;
+}
+
+const BigMenu: FC<BigMenuProps> = ({ isAuthenticated }) => {
   const { setIsMenuOpen, section, setSection } = useUI();  
-   const router = useRouter();
+  const router = useRouter();
 
-  const handleRedirection = (redirection: string, newSection:string) => {
+  const handleRedirection = (redirection: string, newSection: string) => {
     router.push(redirection);
     setIsMenuOpen(false);
-    setSection(newSection)
+    setSection(newSection);
   };
 
+const handleLogout = async () => {
+  try {
+    await AuthenticationService.logout();
+    setIsMenuOpen(false);
+    window.location.href = '/';   
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+  }
+};
+
+  const renderLeftPanel = () => {
+    switch (section) {
+      case 'home': return ['HOME', 'Who we are, and what we do'];
+      case 'media': return ['MEDIA', 'Our media'];
+      case 'contact': return ['CONTACT', 'Contact us'];
+      case 'dashboard': return ['MENU', 'Select an option to continue'];
+      default: return ['MENU', 'Select an option'];
+    }
+  };
+
+  const [title, subtitle] = renderLeftPanel();
+
+  if (isAuthenticated === null) return null;
+
   return (
-    <div className="fixed top-14 mt-3 left-0 w-full h-full text-white z-50 flex">
+    <div className="fixed top-16   left-0 w-full h-full text-white z-50 flex" style={{"marginTop":"30px"}}>
       <div
         className="flex flex-col flex-[3] w-full items-center justify-center border-r border-gray-500"
         style={{ backgroundColor: 'rgba(23, 23, 23)' }}
       >
-        {section=="home" && <>
-        <h1 className="text-4xl font-bold">HOME</h1>
-        <h1 className="text-lg text-center pt-5">Who we are, and what we do</h1> 
-        </>}
-                {section=="media" && <>
-        <h1 className="text-4xl font-bold">MEDIA</h1>
-        <h1 className="text-lg text-center pt-5">Our media</h1> 
-        </>}
-                {section=="contact" && <>
-        <h1 className="text-4xl font-bold">CONTACT</h1>
-        <h1 className="text-lg text-center pt-5">Contact us</h1> 
-        </>}
+        <h1 className="text-4xl font-bold">{title}</h1>
+        <h1 className="text-lg text-center pt-5">{subtitle}</h1> 
       </div>
 
       <div className="flex-[1] w-full flex flex-col items-center justify-center space-y-6 bg-zinc-900">
-        <p className="font-bold text-xl md:text-4xl p-5 ">MENÚ</p>
+        <p className="font-bold text-xl md:text-4xl p-5">Menu</p>
 
-        <div
-          className={`text-xs md:text-lg hover:bg-zinc-500 hover:bg-opacity-10 pt-6 pb-5 px-3 text-center cursor-pointer w-full
-             ${section === 'home' ? 'text-gray-500 bg-white' : 'opacity-50 hover:opacity-100'}`}
-          onClick={() => handleRedirection('/', 'home')}
-          style={{ transitionDuration: '1200ms' }}
-        >
-          <p>Home</p>
-        </div>
-
-        <div
-          className={`text-xs md:text-lg hover:bg-zinc-500 hover:bg-opacity-70 pt-6 pb-5 px-3 text-center cursor-pointer w-full
-             ${section === 'media' ? 'text-gray-500 bg-white' : 'opacity-50 hover:opacity-100'}`}
-          onClick={() => handleRedirection('/media', 'media')}
-          style={{ transitionDuration: '1200ms' }}
-        >
-          <p>Our media</p>
-        </div>
-
-        <div
-          className={`text-xs md:text-lg hover:bg-zinc-500 hover:bg-opacity-70 pt-6 pb-5 px-3 text-center cursor-pointer w-full
-             ${section === 'contact' ? 'text-gray-500 bg-white' : 'opacity-50 hover:opacity-100'}`}
-          onClick={() => handleRedirection('/contact', 'contact')}
-          style={{ transitionDuration: '1200ms' }}
-        >
-          <p>Contact us</p>
-        </div>
- 
+        {isAuthenticated ? (
+          <>
+            <MenuItem label="Dashboard" sectionKey="dashboard" path="/logged/dashboard" />
+            <MenuItem label="QUOTES administrator" sectionKey="quotes" path="/quotesadmin" />
+            <MenuItem label="NEWSROOM administrator" sectionKey="newsroom" path="/blogadmin" />
+            <MenuItem label="AGENCY administrator" sectionKey="agency" path="/agencyadmin" />
+            <MenuItem label="MEDIA administrator" sectionKey="media" path="/mediaadmin" />
+            <MenuItem label="Log out" sectionKey="logout" onClick={handleLogout} />
+          </>
+        ) : (
+          <>
+            <MenuItem label="Home" sectionKey="home" path="/" />
+            <MenuItem label="Our media" sectionKey="media" path="/en/media" />
+            <MenuItem label="Plynium Agency" sectionKey="agency" path="/en/agency" />
+            <MenuItem label="Newsroom" sectionKey="newsroom" path="/en/newsroom" />
+            <MenuItem label="Log in" sectionKey="login" path="/en/auth/login" />
+            <MenuItem label="Create an account" sectionKey="register" path="/en/auth/register" />
+            <MenuItem label="Contact us" sectionKey="contact" path="/en/contact" />
+          </>
+        )}
       </div>
     </div>
   );
+
+  function MenuItem({
+    label,
+    sectionKey,
+    path,
+    onClick,
+  }: {
+    label: string;
+    sectionKey: string;
+    path?: string;
+    onClick?: () => void;
+  }) {
+    const isActive = section === sectionKey;
+    return (
+      <div
+        className={`text-xs   hover:bg-zinc-500 hover:bg-opacity-70 pt-3 pb-3 px-3 text-center cursor-pointer w-full
+          ${isActive ? 'text-gray-500 bg-white' : 'opacity-50 hover:opacity-100'}`}
+        onClick={() => {
+          if (onClick) onClick();
+          else if (path) handleRedirection(path, sectionKey);
+        }}
+        style={{ transitionDuration: '1200ms' }}
+      >
+        <p>{label}</p>
+      </div>
+    );
+  }
 };
 
 export default BigMenu;

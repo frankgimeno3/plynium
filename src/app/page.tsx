@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
+import Hero from "./components/landingComponents/Hero";
 
 export default function Home() {
   const footerRef = useRef<HTMLDivElement>(null);
@@ -25,6 +26,7 @@ export default function Home() {
     }
   }, []);
   
+  
   return (
     <div className="relative flex flex-col min-h-screen w-full bg-gray-800 text-white opacity-90">
       <video
@@ -35,7 +37,7 @@ export default function Home() {
         muted
         className="fixed top-0 left-0 w-full h-full object-cover z-0"
       />
-
+      <Hero/>
       <div className="absolute top-0 left-0 w-full h-full bg-zinc-900 opacity-70 z-10" />
     </div>
   );

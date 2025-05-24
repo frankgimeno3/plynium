@@ -1,28 +1,64 @@
 "use client"
 import { useRouter } from 'next/navigation';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useUI } from '../context/UIContext';
 import BigMenu from './BigMenu';
 
-interface NavbarProps {
-  
-}
+interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({ }) => {
-    const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  const router = useRouter();
   const { isMenuOpen, setIsMenuOpen } = useUI();
 
-  const handleRedirection = (redirection: string) => {
-    router.push(redirection);
+  const handleRedirection = () => {
+    if (isAuthenticated) {
+      router.push('/logged/dashboard');
+    } else {
+      router.push('/');
+    }
     setIsMenuOpen(false);
   };
-  
+
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/validate-token', {
+          method: 'POST',
+        });
+
+        if (res.ok) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        setIsAuthenticated(false);
+      }
+    }
+
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) return null;
+
+  const handleMenuToggle = ()=>{
+    if(isMenuOpen){setIsMenuOpen(false)}
+  }
+
   return (
-    <nav className='flex flex-row py-8 px-12 justify-between bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md" '>
-      {isMenuOpen && (
-        <BigMenu />
+    <>
+     {isMenuOpen && (
+        <BigMenu isAuthenticated={isAuthenticated} />
       )}
-        <p  onClick={() => handleRedirection('/')}>Plynium</p>
+ <nav className='flex flex-row py-8 px-12 justify-between bg-black text-white fixed top-0 left-0 w-full z-50 shadow-md' 
+    onClick={()=>handleMenuToggle()}>
+     
+      <p onClick={handleRedirection}>
+        Plynium
+      </p>
+
       <button className="text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         {isMenuOpen ? (
           <svg
@@ -55,6 +91,8 @@ const Navbar: FC<NavbarProps> = ({ }) => {
         )}
       </button>
     </nav>
+</>
+   
   );
 };
 
