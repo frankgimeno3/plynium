@@ -1,12 +1,10 @@
 "use client"
 import React, { FC, useState } from 'react';
 import AuthenticationService from "@/app/components/service/AuthenticationService";
-import { useRouter } from 'next/navigation';
 
 interface LoginProps { }
 
 const Login: FC<LoginProps> = ({ }) => {
-    const router = useRouter();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

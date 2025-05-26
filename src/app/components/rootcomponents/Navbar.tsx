@@ -35,6 +35,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
         }
       } catch (error) {
         setIsAuthenticated(false);
+        console.log("Error: ", error)
       }
     }
 

@@ -1,10 +1,8 @@
 import React, { FC } from "react";
-import { useRouter } from "next/navigation";
 
 interface ServicesProps {}
 
 const Services: FC<ServicesProps> = () => {
-  const router = useRouter();
 
   return (
     <div

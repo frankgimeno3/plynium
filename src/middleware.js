@@ -98,6 +98,7 @@ export async function middleware(request) {
 
       return response;
     } catch (e) {
+      console.log("Error: ", e)
       return NextResponse.redirect(new URL("/en/auth/login", request.url));
     }
   }
