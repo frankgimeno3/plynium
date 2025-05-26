@@ -12,6 +12,7 @@ const MediaAdmin: FC<MediaAdminProps> = ({ }) => {
         <p>Crear un post multiportal</p>
         <p>Notificaciones de cada uno</p>
         <p>Panel de cada uno por separado</p>
+            <p>Plynium agency (blog)</p>
             <p>BuildInformer.global</p>
             <p>GlassInformer.global</p>
             <p>Fenestrator.global</p>
