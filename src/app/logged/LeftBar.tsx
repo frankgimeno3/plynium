@@ -20,12 +20,13 @@ const Leftbar: FC = () => {
 
   const [isMediaOpen, setIsMediaOpen] = useState(false);
 
-   useEffect(() => {
-     const parts = pathname?.split('/') || [];
+  useEffect(() => {
+    const parts = pathname?.split('/') || [];
+
     let currentSection = '';
 
     if (parts.length >= 3) {
-       if (parts[2] === 'mediaadmin' && parts.length >= 4) {
+      if (parts[2] === 'mediaadmin' && parts.length >= 4) {
         currentSection = parts[3].toLowerCase();
       } else {
         currentSection = parts[2].toLowerCase();
@@ -89,9 +90,8 @@ const Leftbar: FC = () => {
           <div className="pr-12">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 transform transition-transform duration-200 ${
-                isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
-              }`}
+              className={`h-4 w-4 transform transition-transform duration-200 ${isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
+                }`}
               viewBox="0 0 24 24"
               stroke="white"
               strokeWidth="2"

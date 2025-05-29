@@ -1,35 +1,26 @@
-"use client";
+'use client';
+
 import { useRouter } from "next/navigation";
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUI } from "../context/UIContext";
 import BigMenu from "./BigMenu";
 import AuthenticationService from "../service/AuthenticationService";
 
 interface NavbarProps {}
 
-const Navbar: FC<NavbarProps> = () => {
+const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const router = useRouter();
   const { isMenuOpen, setIsMenuOpen } = useUI();
 
-  const handleRedirection = () => {
-    if (isAuthenticated) {
-      router.push("/logged/dashboard");
-    } else {
-      router.push("/");
-    }
-    setIsMenuOpen(false);
-  };
-
   useEffect(() => {
     async function checkAuth() {
       try {
-        const res = await fetch("/api/validate-token", {
+        const response = await fetch("/api/validate-token", {
           method: "POST",
           credentials: "include",
         });
-
-        if (res.ok) {
+        if (response.ok) {
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
@@ -42,7 +33,14 @@ const Navbar: FC<NavbarProps> = () => {
     checkAuth();
   }, []);
 
-  if (isAuthenticated === null) return null;
+  const handleRedirection = () => {
+    if (isAuthenticated) {
+      router.push("/logged/dashboard");
+    } else {
+      router.push("/");
+    }
+    setIsMenuOpen(false);
+  };
 
   const handleMenuToggle = () => {
     if (isMenuOpen) {
@@ -50,8 +48,8 @@ const Navbar: FC<NavbarProps> = () => {
     }
   };
 
-  const handleLogout = async (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleLogout = async (event: React.MouseEvent) => {
+    event.stopPropagation();
     try {
       await AuthenticationService.logout();
       setIsMenuOpen(false);
@@ -65,13 +63,19 @@ const Navbar: FC<NavbarProps> = () => {
     <>
       {isMenuOpen && <BigMenu />}
       <nav
-        className="flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md  "
+        className="flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md"
         onClick={() => handleMenuToggle()}
       >
-        <p className="text-gray-600 font-bold cursor-pointer hover:text-gray-700" 
-        onClick={handleRedirection}>Plynium</p>
+        <p
+          className="text-gray-600 font-bold cursor-pointer hover:text-gray-700"
+          onClick={handleRedirection}
+        >
+          Plynium
+        </p>
 
-        {!isAuthenticated && (
+        {isAuthenticated === null && <div style={{ width: 30, height: 30 }} />}
+
+        {isAuthenticated === false && (
           <button
             className="text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -108,11 +112,10 @@ const Navbar: FC<NavbarProps> = () => {
           </button>
         )}
 
-        {isAuthenticated && (
+        {isAuthenticated === true && (
           <button
             onClick={handleLogout}
-            className="text-gray-500  cursor-pointer border rounded px-3 py-1 text-sm shadow
-            bg-white hover:bg-gray-100 hover:bg-opacity-20"
+            className="text-gray-500 cursor-pointer border rounded px-3 py-1 text-sm shadow bg-white hover:bg-gray-100 hover:bg-opacity-20"
           >
             Logout
           </button>
@@ -123,4 +126,3 @@ const Navbar: FC<NavbarProps> = () => {
 };
 
 export default Navbar;
-  

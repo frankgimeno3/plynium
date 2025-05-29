@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 type UIContextType = {
   isMenuOpen: boolean;
@@ -11,14 +12,34 @@ type UIContextType = {
   setLeftBarSection: (value: string) => void;
 };
 
-// Crear el contexto con un valor inicial opcional
 const UIContext = createContext<UIContextType | undefined>(undefined);
 
-// Proveedor del contexto
 export const UIProvider = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+
+  const getInitialLeftBarSection = () => {
+    const parts = pathname?.split('/') || [];
+    if (parts.length >= 3) {
+      if (parts[2] === 'mediaadmin' && parts.length >= 4) {
+        return parts[3].toLowerCase();
+      } else {
+        return parts[2].toLowerCase();
+      }
+    }
+    return 'dashboard'; // valor por defecto
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [section, setSection] = useState('home');
-  const [leftBarSection, setLeftBarSection] = useState('dashboard'); // ✅ Nuevo estado
+  const [leftBarSection, setLeftBarSection] = useState(getInitialLeftBarSection());
+
+  // Opcional: si el pathname cambia, sincronizamos leftBarSection (por si el router no remonta el provider)
+  useEffect(() => {
+    const current = getInitialLeftBarSection();
+    if (current !== leftBarSection) {
+      setLeftBarSection(current);
+    }
+  }, [pathname]);
 
   return (
     <UIContext.Provider
@@ -28,7 +49,7 @@ export const UIProvider = ({ children }: { children: ReactNode }) => {
         section,
         setSection,
         leftBarSection,
-        setLeftBarSection, // ✅ Nuevo setter
+        setLeftBarSection,
       }}
     >
       {children}
@@ -36,7 +57,6 @@ export const UIProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Hook personalizado para usar el contexto
 export const useUI = (): UIContextType => {
   const context = useContext(UIContext);
   if (!context) {
