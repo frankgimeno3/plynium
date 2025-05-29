@@ -59,11 +59,11 @@ const handleLogout = async () => {
 
         {isAuthenticated ? (
           <>
-            <MenuItem label="Dashboard" sectionKey="dashboard" path="/logged/dashboard" />
+            <MenuItem label="Notifications Dashboard" sectionKey="dashboard" path="/logged/dashboard" />
             <MenuItem label="QUOTES administrator" sectionKey="quotes" path="/quotesadmin" />
             <MenuItem label="NEWSROOM administrator" sectionKey="newsroom" path="/blogadmin" />
             <MenuItem label="AGENCY administrator" sectionKey="agency" path="/agencyadmin" />
-            <MenuItem label="MEDIA administrator" sectionKey="media" path="/mediaadmin" />
+            {/* <MenuItem label="MEDIA administrator" sectionKey="media" path="/mediaadmin" /> */}
             <MenuItem label="Log out" sectionKey="logout" onClick={handleLogout} />
           </>
         ) : (
