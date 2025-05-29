@@ -1,3 +1,5 @@
+
+
 'use client';
 
 import React, { useState } from 'react';
@@ -95,8 +97,20 @@ const TableComponent = () => {
 
   return (
     <>
-      {/* Aquí puedes agregar encabezados, búsqueda o botones superiores */}
+      <p className="text-xl font-semibold mb-4">Contents administrator</p>
 
+      <div className='flex flex-row w-full justify-between mb-8 w-full bg-white shadow border border-gray-100 text-xs p-6'>
+        <div className='flex flex-col'>
+          <p>Buscar contenidos</p>
+          <div className='flex flex-row py-4'>
+          <input className='px-2 py-1 border border-gray-100 rounded' style={{"width":"200px"}}
+          placeholder='Buscar contenidos'/>
+          </div>
+        </div>
+        <button className='bg-white shadow border border-gray-100 text-xs px-3 py-2 rounded hover:text-gray-700 h-'>
+          + Nuevo contenido
+        </button>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
