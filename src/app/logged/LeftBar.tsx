@@ -1,37 +1,70 @@
-import React, { FC, useState } from 'react';
+'use client';
 
-interface LeftbarProps {}
+import { useRouter } from 'next/navigation';
+import React, { FC, useEffect, useState } from 'react';
+import { useUI } from '@/app/components/context/UIContext';
 
-const Leftbar: FC<LeftbarProps> = ({ }) => {
+const mediaSections = [
+  'aluminiumprofiles',
+  'buildinformer',
+  'fenestrator',
+  'glassinformer',
+  'pvcprofiles',
+  'sunshaders',
+];
+
+const Leftbar: FC = () => {
+  const router = useRouter();
+  const { leftBarSection, setLeftBarSection } = useUI();
+
   const [isMediaOpen, setIsMediaOpen] = useState(false);
 
-  const toggleMedia = () => setIsMediaOpen(!isMediaOpen);
+  // Abre MEDIA si leftBarSection pertenece a mediaSections
+  useEffect(() => {
+    if (mediaSections.includes(leftBarSection)) {
+      setIsMediaOpen(true);
+    }
+  }, [leftBarSection]);
+
+  const handleRedirection = (ubi: string, sectionName: string) => {
+    setLeftBarSection(sectionName.toLowerCase());
+    router.push(ubi);
+  };
+
+  const getMenuItemClasses = (sectionName: string) =>
+    `w-full bg-white cursor-pointer ${
+      leftBarSection === sectionName ? 'bg-opacity-5' : 'bg-opacity-0'
+    } hover:bg-opacity-10`;
 
   return (
-    <div className='flex flex-col max-w-2xl bg-zinc-500 text-white'>
-      <p className='font-bold pb-6 text-xl p-8 pr-16'>Panel de control</p>
-      <div className='flex flex-col text-sm'>
-
-        <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-          <p className='py-3 px-8 pr-16'>Notifications Dashboard</p>
-        </div>
-
-        <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-          <p className='py-3 px-8 pr-16'>QUOTES administrator</p>
-        </div>
-
-        <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-          <p className='py-3 px-8 pr-16'>NEWSROOM administrator</p>
-        </div>
-
-        <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-          <p className='py-3 px-8 pr-16'>AGENCY administrator</p>
-        </div>
-
-        {/* MEDIA administrator con toggle */}
+    <div className="flex flex-col max-w-2xl bg-zinc-500 text-white pl-3" style={{"width":"330px"}}>
+      <p className="font-bold pb-6 text-xl p-8 pr-16">Panel de control</p>
+      <div className="flex flex-col text-sm">
         <div
-          onClick={toggleMedia}
-          className='w-full cursor-pointer bg-white bg-opacity-0 hover:bg-opacity-10 flex items-center justify-between px-8 pr-4 py-3'
+          className={getMenuItemClasses('dashboard')}
+          onClick={() => handleRedirection('/logged/dashboard', 'dashboard')}
+        >
+          <p className="py-3 px-8 pr-16">Notifications Dashboard</p>
+        </div>
+
+        <div
+          className={getMenuItemClasses('quotesadmin')}
+          onClick={() => handleRedirection('/logged/quotesadmin', 'quotesadmin')}
+        >
+          <p className="py-3 px-8 pr-16">QUOTES administrator</p>
+        </div>
+
+        <div
+          className={getMenuItemClasses('agencyadmin')}
+          onClick={() => handleRedirection('/logged/agencyadmin', 'agencyadmin')}
+        >
+          <p className="py-3 px-8 pr-16">AGENCY administrator</p>
+        </div>
+
+        {/* MEDIA administrator */}
+        <div
+          onClick={() => setIsMediaOpen(!isMediaOpen)}
+          className="w-full cursor-pointer bg-white bg-opacity-0 hover:bg-opacity-10 flex items-center justify-between px-8 pr-4 py-3"
         >
           <p>MEDIA administrator</p>
           <svg
@@ -48,30 +81,23 @@ const Leftbar: FC<LeftbarProps> = ({ }) => {
           </svg>
         </div>
 
-        {/* Opciones adicionales al expandir MEDIA */}
         {isMediaOpen && (
-          <div className='p-3'>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>Plynium Agency</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>Portales</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>Buildinformer</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>Fenestrator</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>Sunshaders</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>PVCProfiles</p>
-            </div>
-            <div className='w-full bg-white bg-opacity-0 hover:bg-opacity-10'>
-              <p className='py-3 px-8 pr-16'>AluminiumProfiles</p>
-            </div>
+          <div className="p-3">
+            {mediaSections.map((section) => (
+              <div
+                key={section}
+                className={getMenuItemClasses(section)}
+              >
+                <p
+                  className="py-3 px-8 pr-16 cursor-pointer"
+                  onClick={() =>
+                    handleRedirection(`/logged/mediaadmin/${section}`, section)
+                  }
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </p>
+              </div>
+            ))}
           </div>
         )}
       </div>

@@ -7,24 +7,36 @@ type UIContextType = {
   setIsMenuOpen: (value: boolean) => void;
   section: string;
   setSection: (value: string) => void;
+  leftBarSection: string;
+  setLeftBarSection: (value: string) => void;
 };
 
-// Creamos el contexto
+// Crear el contexto con un valor inicial opcional
 const UIContext = createContext<UIContextType | undefined>(undefined);
 
-// Componente proveedor del contexto
+// Proveedor del contexto
 export const UIProvider = ({ children }: { children: ReactNode }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [section, setSection] = useState('home');
+  const [leftBarSection, setLeftBarSection] = useState('dashboard'); // ✅ Nuevo estado
 
   return (
-    <UIContext.Provider value={{ isMenuOpen, setIsMenuOpen, section, setSection }}>
+    <UIContext.Provider
+      value={{
+        isMenuOpen,
+        setIsMenuOpen,
+        section,
+        setSection,
+        leftBarSection,
+        setLeftBarSection, // ✅ Nuevo setter
+      }}
+    >
       {children}
     </UIContext.Provider>
   );
 };
 
-// Hook para usar el contexto
+// Hook personalizado para usar el contexto
 export const useUI = (): UIContextType => {
   const context = useContext(UIContext);
   if (!context) {
