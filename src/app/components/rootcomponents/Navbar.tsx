@@ -53,9 +53,8 @@ const Navbar: FC<NavbarProps> = ({ }) => {
      {isMenuOpen && (
         <BigMenu isAuthenticated={isAuthenticated} />
       )}
- <nav className='flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md' 
+ <nav className='flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md cursor-pointer' 
     onClick={()=>handleMenuToggle()}>
-     
       <p onClick={handleRedirection}>
         PLYNIUM
       </p>

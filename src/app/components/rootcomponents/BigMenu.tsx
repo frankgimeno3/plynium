@@ -34,7 +34,9 @@ const handleLogout = async () => {
       case 'media': return ['MEDIA', 'Our media'];
       case 'contact': return ['CONTACT', 'Contact us'];
       case 'dashboard': return ['MENU', 'Select an option to continue'];
-      default: return ['MENU', 'Select an option'];
+      case 'agency': return ['AGENCY', 'Let us create your content'];
+      case 'newsroom': return ['NEWSROOM', 'Weekly updates about the digital marketing world'];
+       default: return ['MENU', 'Select an option'];
     }
   };
 
@@ -49,11 +51,11 @@ const handleLogout = async () => {
         style={{ backgroundColor: 'rgba(23, 23, 23)' }}
       >
         <h1 className="text-4xl font-bold">{title}</h1>
-        <h1 className="text-lg text-center pt-5">{subtitle}</h1> 
+        <h1 className="text-lg text-left pt-5">{subtitle}</h1> 
       </div>
 
-      <div className="flex-[1] w-full flex flex-col items-center justify-center space-y-6 bg-zinc-900">
-        <p className="font-bold text-xl md:text-4xl p-5">Menu</p>
+      <div className="flex-[1] w-full flex flex-col items-center  space-y-3 bg-zinc-900 ">
+        <p className="font-bold text-xl md:text-4xl p-5 pl-12 text-left  pt-24  w-full">Menu</p>
 
         {isAuthenticated ? (
           <>
@@ -70,8 +72,6 @@ const handleLogout = async () => {
             <MenuItem label="Our media" sectionKey="media" path="/en/media" />
             <MenuItem label="Plynium Agency" sectionKey="agency" path="/en/agency" />
             <MenuItem label="Newsroom" sectionKey="newsroom" path="/en/newsroom" />
-            <MenuItem label="Log in" sectionKey="login" path="/en/auth/login" />
-            <MenuItem label="Create an account" sectionKey="register" path="/en/auth/register" />
             <MenuItem label="Contact us" sectionKey="contact" path="/en/contact" />
           </>
         )}
@@ -93,7 +93,7 @@ const handleLogout = async () => {
     const isActive = section === sectionKey;
     return (
       <div
-        className={`text-xs   hover:bg-zinc-500 hover:bg-opacity-70 pt-3 pb-3 px-3 text-center cursor-pointer w-full
+        className={`text-sm   hover:bg-zinc-500 hover:bg-opacity-70 pt-3 pb-3 pl-12 text-left cursor-pointer w-full
           ${isActive ? 'text-gray-500 bg-white' : 'opacity-50 hover:opacity-100'}`}
         onClick={() => {
           if (onClick) onClick();

@@ -6,34 +6,34 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = ({ }) => {
   return (
-    <footer className='flex flex-row justify-between p-5 bg-black text-white p-12 px-24 p-12 z-50 relative '>
+    <footer className='flex flex-row justify-between p-5 bg-black text-white px-24 py-16 z-50 relative '>
         <div className='flex flex-col w-1/4'>
-          <p>Plynium</p>
+          <p className='text-xl font-bold '>Plynium</p>
           <p>Dirección</p>
         </div>
-        <div className='flex flex-row justify-between w-full'>
-          <div className='flex flex-col'>
-            <p>LEGAL</p>
-            <p>Legal Notice</p>
-            <p>Privacy Policy</p>
-            <p>Cookies Policy</p>
+        <div className='flex flex-row justify-between w-full px-24'>
+          <div className='flex flex-col gap-2'>
+            <p className='text-xl font-bold '>Legal</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Legal Notice</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Privacy Policy</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Cookies Policy</p>
           </div>
-          <div className='flex flex-col'>
-            <p>OUR MEDIA</p>
-            <p>BuildInformer.global</p>
-            <p>GlassInformer.global</p>
-            <p>Fenestrator.global</p>
-            <p>SunShaders.global</p>
-            <p>PvcProfiles.global</p>
-            <p>AluminiumProfiles.global</p>
+          <div className='flex flex-col gap-2'>
+            <p className='text-xl font-bold '>Our media</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>BuildInformer.global</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>GlassInformer.global</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Fenestrator.global</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>SunShaders.global</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>PvcProfiles.global</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>AluminiumProfiles.global</p>
           </div>
-          <div className='flex flex-col'>
-            <p>SOCIAL</p>
-            <p>Instagram</p>
-            <p>Linkedin</p>
-            <p>X</p>
+          <div className='flex flex-col gap-2'>
+            <p className='text-xl font-bold '>Social</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Instagram</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Linkedin</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>X</p>
             {/* <p>TikTok</p> */}
-            <p>Youtube</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Youtube</p>
           </div>
         </div>
     </footer>
