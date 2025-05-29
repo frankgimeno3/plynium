@@ -19,7 +19,6 @@ const Leftbar: FC = () => {
 
   const [isMediaOpen, setIsMediaOpen] = useState(false);
 
-  // Abre MEDIA si leftBarSection pertenece a mediaSections
   useEffect(() => {
     if (mediaSections.includes(leftBarSection)) {
       setIsMediaOpen(true);
@@ -32,12 +31,11 @@ const Leftbar: FC = () => {
   };
 
   const getMenuItemClasses = (sectionName: string) =>
-    `w-full bg-white cursor-pointer ${
-      leftBarSection === sectionName ? 'bg-opacity-5' : 'bg-opacity-0'
+    `w-full bg-white cursor-pointer ${leftBarSection === sectionName ? 'bg-opacity-5' : 'bg-opacity-0'
     } hover:bg-opacity-10`;
 
   return (
-    <div className="flex flex-col max-w-2xl bg-zinc-500 text-white pl-3" style={{"width":"330px"}}>
+    <div className="flex flex-col max-w-2xl bg-zinc-500 text-white pl-3" style={{ width: '360px' }}>
       <p className="font-bold pb-6 text-xl p-8 pr-16">Panel de control</p>
       <div className="flex flex-col text-sm">
         <div
@@ -46,7 +44,12 @@ const Leftbar: FC = () => {
         >
           <p className="py-3 px-8 pr-16">Notifications Dashboard</p>
         </div>
-
+        <div
+          className={getMenuItemClasses('contentsadmin')}
+          onClick={() => handleRedirection('/logged/contentsadmin', 'contentsadmin')}
+        >
+          <p className="py-3 px-8 pr-16">CONTENTS administrator</p>
+        </div>
         <div
           className={getMenuItemClasses('quotesadmin')}
           onClick={() => handleRedirection('/logged/quotesadmin', 'quotesadmin')}
@@ -69,9 +72,8 @@ const Leftbar: FC = () => {
           <p>MEDIA administrator</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 transform transition-transform duration-200 ${
-              isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
-            }`}
+            className={`h-4 w-4 transform transition-transform duration-200 ${isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
+              }`}
             viewBox="0 0 24 24"
             stroke="white"
             strokeWidth="2"
@@ -84,10 +86,7 @@ const Leftbar: FC = () => {
         {isMediaOpen && (
           <div className="p-3">
             {mediaSections.map((section) => (
-              <div
-                key={section}
-                className={getMenuItemClasses(section)}
-              >
+              <div key={section} className={getMenuItemClasses(section)}>
                 <p
                   className="py-3 px-8 pr-16 cursor-pointer"
                   onClick={() =>
