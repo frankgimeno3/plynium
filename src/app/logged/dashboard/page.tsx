@@ -9,8 +9,8 @@ const DashboardPage = () => {
   const { setLeftBarSection } = useUI();
 
   const sections = [
-    { label: 'QUOTES administrator', path: '/logged/quotesadmin', section: 'quotesadmin' },
-    { label: 'AGENCY administrator', path: '/logged/agencyadmin', section: 'agencyadmin' },
+    { label: 'Quotes administrator', path: '/logged/quotesadmin', section: 'quotesadmin' },
+    { label: 'Agency administrator', path: '/logged/agencyadmin', section: 'agencyadmin' },
     { label: 'Aluminiumprofiles', path: '/logged/mediaadmin/aluminiumprofiles', section: 'aluminiumprofiles' },
     { label: 'Buildinformer', path: '/logged/mediaadmin/buildinformer', section: 'buildinformer' },
     { label: 'Fenestrator', path: '/logged/mediaadmin/fenestrator', section: 'fenestrator' },
@@ -32,7 +32,7 @@ const DashboardPage = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
-            <tr className="bg-gray-100 text-left">
+            <tr className="bg-gray-100 text-left ">
               <th className="py-2 px-4 border-b">Sección</th>
               <th className="py-2 px-4 border-b">Nº tickets por gestionar</th>
               <th className="py-2 px-4 border-b">Nuevos tickets</th>
@@ -41,14 +41,15 @@ const DashboardPage = () => {
           </thead>
           <tbody>
             {sections.map(({ label, path, section }) => (
-              <tr key={section} className="hover:bg-gray-50">
+              <tr key={section} className="hover:bg-gray-50 ">
                 <td className="py-2 px-4 border-b">{label}</td>
                 <td className="py-2 px-4 border-b text-center">--</td>
                 <td className="py-2 px-4 border-b text-center">--</td>
-                <td className="py-2 px-4 border-b text-center">
+                <td className="py-2 px-4 border-b ">
                   <button
                     onClick={() => handleRedirection(path, section)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
+                    className="bg-white hover:bg-gray-100 hover:bg-opacity-20
+                     border border-gray-200 text-gray-500 px-4 py-1 rounded text-sm"
                   >
                     Ver todo
                   </button>

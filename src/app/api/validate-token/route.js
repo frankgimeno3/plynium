@@ -28,7 +28,9 @@ export async function POST(request) {
     }
 
     const idToken = request.cookies.get(`${baseKey}.${username}.idToken`)?.value;
-    const accessToken = request.cookies.get(`${baseKey}.${username}.accessToken`)?.value;
+    const accessToken = request.cookies.get(
+      `${baseKey}.${username}.accessToken`
+    )?.value;
 
     if (!idToken || !accessToken) {
       return new Response("Missing token(s)", { status: 400 });
