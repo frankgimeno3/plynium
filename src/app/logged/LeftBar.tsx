@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import React, { FC, useEffect, useState } from 'react';
 import { useUI } from '@/app/components/context/UIContext';
 
@@ -15,15 +15,30 @@ const mediaSections = [
 
 const Leftbar: FC = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const { leftBarSection, setLeftBarSection } = useUI();
 
   const [isMediaOpen, setIsMediaOpen] = useState(false);
 
-  useEffect(() => {
-    if (mediaSections.includes(leftBarSection)) {
-      setIsMediaOpen(true);
+   useEffect(() => {
+     const parts = pathname?.split('/') || [];
+    let currentSection = '';
+
+    if (parts.length >= 3) {
+       if (parts[2] === 'mediaadmin' && parts.length >= 4) {
+        currentSection = parts[3].toLowerCase();
+      } else {
+        currentSection = parts[2].toLowerCase();
+      }
     }
-  }, [leftBarSection]);
+
+    if (currentSection && currentSection !== leftBarSection) {
+      setLeftBarSection(currentSection);
+    }
+
+    // Abrir media si la sección es de mediaSections
+    setIsMediaOpen(mediaSections.includes(currentSection));
+  }, [pathname, leftBarSection, setLeftBarSection]);
 
   const handleRedirection = (ubi: string, sectionName: string) => {
     setLeftBarSection(sectionName.toLowerCase());
@@ -67,22 +82,23 @@ const Leftbar: FC = () => {
         {/* MEDIA administrator */}
         <div
           onClick={() => setIsMediaOpen(!isMediaOpen)}
-          className="w-full   bg-white bg-opacity-0  flex items-center justify-between px-8 pr-4 py-3 "
+          className="w-full bg-white bg-opacity-0 flex items-center justify-between px-8 pr-4 py-3 "
         >
-{ !isMediaOpen &&         <p className='pl-3'>Media administrator</p> } 
-{ isMediaOpen &&         <p className='pl-3 font-bold'>Media administrator</p> } 
-         <div className='pr-12'>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 transform transition-transform duration-200 ${isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
+          {!isMediaOpen && <p className="pl-3">Media administrator</p>}
+          {isMediaOpen && <p className="pl-3 font-bold">Media administrator</p>}
+          <div className="pr-12">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-4 w-4 transform transition-transform duration-200 ${
+                isMediaOpen ? 'rotate-180 fill-white' : 'rotate-0 fill-none'
               }`}
-            viewBox="0 0 24 24"
-            stroke="white"
-            strokeWidth="2"
-            fill="none"
-          >
-            <path d="M6 15l6-6 6 6" />
-          </svg>
+              viewBox="0 0 24 24"
+              stroke="white"
+              strokeWidth="2"
+              fill="none"
+            >
+              <path d="M6 15l6-6 6 6" />
+            </svg>
           </div>
         </div>
 
@@ -91,10 +107,8 @@ const Leftbar: FC = () => {
             {mediaSections.map((section) => (
               <div key={section} className={getMenuItemClasses(section)}>
                 <p
-                  className="py-2 px-8 pl-6 text-xs  cursor-pointer"
-                  onClick={() =>
-                    handleRedirection(`/logged/mediaadmin/${section}`, section)
-                  }
+                  className="py-2 px-8 pl-6 text-xs cursor-pointer"
+                  onClick={() => handleRedirection(`/logged/mediaadmin/${section}`, section)}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </p>
