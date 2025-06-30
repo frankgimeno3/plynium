@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "./components/rootcomponents/Navbar";
 import Footer from "./components/rootcomponents/Footer";
 import { UIProvider } from "./components/context/UIContext";
- 
+
 
 
 const geistSans = Geist({
@@ -27,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
   return (
     <html lang="en">
       <body

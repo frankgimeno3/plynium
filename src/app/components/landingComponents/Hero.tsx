@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 import { useUI } from '../context/UIContext';
 
-interface HeroProps {}
+interface HeroProps { }
 
 const Hero: FC<HeroProps> = () => {
   const router = useRouter();
@@ -24,16 +24,16 @@ const Hero: FC<HeroProps> = () => {
         </h2>
         <p className='font-bold pb-2  '>Do you want to improve communication for your company?</p>
         <div className='flex flex-row w-full  '>
-        <input placeholder='Your email here' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 w-96 mr-4'/>
-        <button
-          className="p-3 px-5 bg-gray-200 rounded hover:bg-white hover:text-black transition-colors w-max text-gray-700"
-          style={{ width: "220px" }}
-          onClick={() => {
-            handleRedirection('/en/contact', 'contact');
-          }}
-        >
-          Book your consultancy
-        </button>
+          <input placeholder='Your email here' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 w-96 mr-4' />
+          <button
+            className="p-3 px-5 bg-gray-200 rounded hover:bg-white hover:text-black transition-colors w-max text-gray-700"
+            style={{ width: "220px" }}
+            onClick={() => {
+              handleRedirection('/en/contact', 'contact');
+            }}
+          >
+            Book your consultancy
+          </button>
         </div>
       </div>
     </div>

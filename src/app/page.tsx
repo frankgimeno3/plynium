@@ -24,7 +24,6 @@ export default function Home() {
         muted
         className="fixed top-0 left-0 w-screen h-screen object-cover z-0"
       />
-
        <div className="relative z-10 text-white">
         <Hero />
         <div

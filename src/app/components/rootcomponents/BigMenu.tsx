@@ -18,7 +18,6 @@ const BigMenu: FC = () => {
       case 'home': return ['HOME', 'Who we are, and what we do'];
       case 'media': return ['MEDIA', 'Our media'];
       case 'contact': return ['CONTACT', 'Contact us'];
-      case 'agency': return ['AGENCY', 'Let us create your content'];
       case 'newsroom': return ['NEWSROOM', 'Weekly updates about the digital marketing world'];
       default: return ['MENU', 'Select an option'];
     }
