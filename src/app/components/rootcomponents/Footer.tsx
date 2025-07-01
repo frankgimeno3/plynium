@@ -18,7 +18,7 @@ const Footer: FC<FooterProps> = ({ }) => {
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Privacy Policy</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Cookies Policy</p>
           </div>
-          <div className='flex flex-col gap-2'>
+          {/* <div className='flex flex-col gap-2'>
             <p className='text-xl font-bold '>Our media</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>BuildInformer.global</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>GlassInformer.global</p>
@@ -26,7 +26,7 @@ const Footer: FC<FooterProps> = ({ }) => {
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>SunShaders.global</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>PvcProfiles.global</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>AluminiumProfiles.global</p>
-          </div>
+          </div> */}
           <div className='flex flex-col gap-2'>
             <p className='text-xl font-bold '>Social</p>
             <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Instagram</p>

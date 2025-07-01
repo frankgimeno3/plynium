@@ -6,7 +6,7 @@ import { useUI } from "../context/UIContext";
 import BigMenu from "./BigMenu";
 import AuthenticationService from "../service/AuthenticationService";
 
-interface NavbarProps {}
+interface NavbarProps { }
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -66,11 +66,10 @@ const Navbar = () => {
         className="flex flex-row py-6 px-12 justify-between bg-white text-gray-800 fixed top-0 left-0 w-full z-50 shadow-md"
         onClick={() => handleMenuToggle()}
       >
-        <p
-          className="text-gray-600 font-bold cursor-pointer hover:text-gray-700"
-          onClick={handleRedirection}
-        >
-          Plynium
+        <p className="bg-[#DA6D00] text-white  font-bold cursor-pointer p-3 rounded-xl shadow-xl
+        px-5 text-5xl italic"
+          onClick={handleRedirection} >
+          P
         </p>
 
         {isAuthenticated === null && <div style={{ width: 30, height: 30 }} />}
