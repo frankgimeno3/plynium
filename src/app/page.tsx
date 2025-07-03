@@ -1,8 +1,12 @@
 "use client";
 
- import Hero from "./components/landingComponents/Hero";
-import JoinTeam from "./components/landingComponents/JoinTeam";
+
 import Image from "next/image";
+import Hero from "./home/landingComponents/Hero";
+import WhatAreYouLookingFor from "./home/landingComponents/WhatAreYouLookingFor";
+import Showroom from "./home/landingComponents/Showroom";
+import JoinTeam from "./home/landingComponents/JoinTeam";
+
 // import { useEffect, useRef } from "react";
 
 export default function Home() {
@@ -15,8 +19,8 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className="relative mx-auto z-10">
-       {/* <video
+    <div className="relative mx-auto z-10 bg-white">
+      {/* <video
         ref={videoRef}
         src="/abstract.mp4"
         autoPlay
@@ -25,7 +29,7 @@ export default function Home() {
         className="fixed top-0 left-0 w-screen h-screen object-cover z-0"
       /> */}
       <Image src="/Hero.png" alt="hero" width={1000} height={1000} className="w-full  absolute  " />
-       <div className="relative z-10 text-white">
+      <div className="relative z-10 text-white">
         <Hero />
         <div
           className="bg-gray-100  "
@@ -34,12 +38,18 @@ export default function Home() {
             zIndex: 10,
             borderTopLeftRadius: "50% 100px",
             borderTopRightRadius: "50% 100px",
-                        
+
           }}
         >
         </div>
-        <JoinTeam />
+
+          <div className="flex flex-col  mx-auto max-w-6xl py-24">
+            <WhatAreYouLookingFor />
+            <Showroom />
+          </div>
+          <JoinTeam />
       </div>
+
     </div>
   );
 }
