@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 
 interface WhatAreYouLookingForProps {
@@ -5,12 +6,17 @@ interface WhatAreYouLookingForProps {
 }
 
 const WhatAreYouLookingFor: FC<WhatAreYouLookingForProps> = ({ }) => {
+    const router = useRouter()
+    const handleRedirection = (path:string)=>{
+        router.push(path)
+    }
     return (
         <div className='flex flex-col pt-12 text-gray-600 gap-6  '>
             <h1 className="text-6xl text-[#DA6D00] font-bold  ">
                 What are you looking for?
             </h1>
-            <div className='flex flex-row bg-white rounded shadow p-5 hover:bg-gray-100/50 border border-gray-100 cursor-pointer'>
+            <div className='flex flex-row bg-white rounded shadow p-5 hover:bg-gray-100/50 border border-gray-100 cursor-pointer'
+            onClick={()=>{handleRedirection('/home/benchmarking')}}>
                 <p className='bg-[#DA6D00] text-white text-3xl items-center p-5 rounded-xl shadow-lg px-7 font-bold '>&gt;</p>
                 <div className='flex flex-col pl-6'>
                     <p className='font-bold text-lg max-h-8'>Products and Providers</p>
@@ -18,7 +24,8 @@ const WhatAreYouLookingFor: FC<WhatAreYouLookingForProps> = ({ }) => {
                     <p>Finding new suppliers for my existing product needs.</p>
                 </div>
             </div>
-            <div className='flex flex-row bg-white rounded shadow p-5 hover:bg-gray-100/50 border border-gray-100 cursor-pointer'>
+            <div className='flex flex-row bg-white rounded shadow p-5 hover:bg-gray-100/50 border border-gray-100 cursor-pointer'
+            onClick={()=>{handleRedirection('/home/quotes')}}>
                 <p className='bg-[#DA6D00] text-white text-3xl items-center p-5 rounded-xl shadow-lg px-7 font-bold'>&gt;</p>
                 <div className='flex flex-col pl-6'>
                     <p className='font-bold text-lg max-h-8'>Tailored Quotes for My Projects</p>

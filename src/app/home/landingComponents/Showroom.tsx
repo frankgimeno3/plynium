@@ -34,14 +34,14 @@ const Showroom: FC = () => {
 
             <div className="flex flex-col gap-12">
                 <div className="flex flex-row gap-12 mx-auto">
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
                 </div>
                 <div className="flex flex-row gap-12 mx-auto">
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
-                    <ShowroomElement path="/home/product/example" onClick={handleRedirection} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
+                    <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
                 </div>
             </div>
         </div>

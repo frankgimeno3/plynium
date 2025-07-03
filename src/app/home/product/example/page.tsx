@@ -7,7 +7,7 @@ interface ExampleProps {
 
 const Example: FC<ExampleProps> = ({ }) => {
   return (
-    <div>
+    <div className='text-gray-600 '>
         <p>Product Example Title</p>
         <p>Product brief description</p>
         <div>
