@@ -10,7 +10,7 @@ const Skeleton: FC<SkeletonProps> = ({industryElement}) => {
       <p className="text-[#DA6D00] font-bold text-6xl ">
         Are you looking for products, providers or prices regarding <span className='text-gray-600 text-7xl '>{industryElement}</span>?
       </p>
-      <p className='text-gray-600 text-lg pt-12'>In Plynium we offer solutions to help you:</p>
+      <p className='text-gray-600 text-lg pt-12'>In Plynium we offer solutions to help you with your purchases:</p>
       <ul className='flex flex-col gap-2 pl-5'>
         <li className='flex flex-row cursor-pointer'>
           <div className='bg-[#DA6D00] text-white px-2 rounded-md shadow-lg '>&gt;</div>
