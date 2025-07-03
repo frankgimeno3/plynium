@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
+import Skeleton from '../Skeleton';
 
 interface architecturalGlassProps {
-  
+
 }
 
 const architecturalGlass: FC<architecturalGlassProps> = ({ }) => {
   return (
-    <div>architecturalGlass</div>
+    <Skeleton industryElement='architectural glass'/>
   );
 };
 

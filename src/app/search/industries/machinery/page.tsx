@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Skeleton from '../Skeleton';
 
 interface MachineryProps {
   
@@ -6,7 +7,7 @@ interface MachineryProps {
 
 const Machinery: FC<MachineryProps> = ({ }) => {
   return (
-    <div>Machinery</div>
+    <Skeleton industryElement='construction machinery'/>
   );
 };
 

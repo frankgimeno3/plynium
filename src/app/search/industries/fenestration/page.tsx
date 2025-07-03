@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Skeleton from '../Skeleton';
 
 interface FenestrationProps {
   
@@ -6,7 +7,7 @@ interface FenestrationProps {
 
 const Fenestration: FC<FenestrationProps> = ({ }) => {
   return (
-    <div>Fenestration</div>
+    <Skeleton industryElement='fenestration'/>
   );
 };
 

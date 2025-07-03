@@ -1,8 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
-import { useUI } from '../context/UIContext';
+import { useUI } from '../../components/context/UIContext';
 import ButtonsRow from './ButtonsRow';
-import WhatAreYouLookingFor from './WhatAreYouLookingFor';
 
 interface HeroProps { }
 

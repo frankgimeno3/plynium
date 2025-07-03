@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Skeleton from '../Skeleton';
 
 interface OutdoorSolutionsProps {
   
@@ -6,7 +7,7 @@ interface OutdoorSolutionsProps {
 
 const OutdoorSolutions: FC<OutdoorSolutionsProps> = ({ }) => {
   return (
-    <div>OutdoorSolutions</div>
+    <Skeleton industryElement='outdoor solutions'/>
   );
 };
 
