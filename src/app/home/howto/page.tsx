@@ -8,6 +8,7 @@ const HowTo: FC<HowToProps> = ({ }) => {
   return (
     <div>
         <p>How to use plynium?</p>
+        <p>AQUI TENDRIAN QUE HABER REDIRECCIONES A PRODUCT Y A BENCHMARK</p>
         <p>Plynium is a platform for professionals who take decisions on the purchasing process of companies</p>
         <p>We offer tools to improve your purchasing on the costs side and on the features side</p>
         <div className='p-12'>
