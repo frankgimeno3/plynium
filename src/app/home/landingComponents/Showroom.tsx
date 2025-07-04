@@ -43,6 +43,8 @@ const Showroom: FC = () => {
                     <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
                     <ShowroomElement path="/home/product/example" onClick={()=>handleRedirection('/home/product/example')} />
                 </div>
+                <button className='bg-[#DA6D00] hover:bg-[#DA3D00]/80 text-white p-5 shadow-xl rounded-xl w-66 mx-auto'
+                onClick={()=>{handleRedirection('search')}}>Search for more products here</button>
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
 
 interface FooterProps {
@@ -5,6 +6,12 @@ interface FooterProps {
 }
 
 const Footer: FC<FooterProps> = ({ }) => {
+  const router = useRouter()
+
+  const handleRedirection = (path:string)=>{
+    router.push(path)
+  }
+
   return (
     <footer className='flex flex-row justify-between p-5 bg-black text-white px-24 py-16 z-50 relative '>
         <div className='flex flex-col w-1/4'>
@@ -14,9 +21,12 @@ const Footer: FC<FooterProps> = ({ }) => {
         <div className='flex flex-row justify-between w-full px-24'>
           <div className='flex flex-col gap-2'>
             <p className='text-xl font-bold '>Legal</p>
-            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Legal Notice</p>
-            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Privacy Policy</p>
-            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm '>Cookies Policy</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm'
+            onClick={()=>{handleRedirection('/footer/legalnotice')}}>Legal Notice</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm'
+            onClick={()=>{handleRedirection('/footer/privacypolicy')}}>Privacy Policy</p>
+            <p className='text-gray-400 hover:text-gray-100 cursor-pointer text-sm'
+            onClick={()=>{handleRedirection('/footer/cookies')}}>Cookies Policy</p>
           </div>
           {/* <div className='flex flex-col gap-2'>
             <p className='text-xl font-bold '>Our media</p>

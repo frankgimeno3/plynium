@@ -20,10 +20,10 @@ const JoinTeam: FC<JoinTeamProps> = () => {
       </p>
       <div className='flex flex-col my-6'>
         <p className='text-left'>Do you want to join us?</p>
-        <input placeholder='Name and surnames' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
-        <input placeholder='Your email here' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
-        <input placeholder='Your linkedin profile link here' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
-        <textarea placeholder='Why do you want to join us?' className=' rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
+        <input placeholder='Name and surnames' className='placeholder-white rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
+        <input placeholder='Your email here' className='placeholder-white rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
+        <input placeholder='Your linkedin profile link here' className='placeholder-white rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
+        <textarea placeholder='Why do you want to join us?' className='placeholder-white rounded bg-white bg-opacity-10 border border-gray-100 px-4 py-2 my-2 w-full'/>
       </div>
       <button
         onClick={handleContactClick}
