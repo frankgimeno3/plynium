@@ -1,0 +1,267 @@
+[
+  {
+    "id": "comp-01",
+    "name": "Nordic Glazing AB",
+    "country": "Sweden",
+    "city": "Stockholm",
+    "industry": "Architectural glass",
+    "foundedYear": 2001,
+    "employeeCount": 240,
+    "website": "nordicglazing.se",
+    "contactEmail": "specs@nordicglazing.se",
+    "description": "Triple and solar control glazing for commercial facades.",
+    "certifications": [
+      "CE",
+      "ISO 9001",
+      "Cradle to Cradle Silver"
+    ],
+    "annualRevenueMeur": 42.5,
+    "products_array": [
+      "prd-001",
+      "prd-002",
+      "prd-003"
+    ]
+  },
+  {
+    "id": "comp-02",
+    "name": "Aluminios Mediterraneo S.L.",
+    "country": "Spain",
+    "city": "Valencia",
+    "industry": "Aluminium systems",
+    "foundedYear": 1995,
+    "employeeCount": 180,
+    "website": "alumed.es",
+    "contactEmail": "ventas@alumed.es",
+    "description": "Extruded profiles and curtain wall kits.",
+    "certifications": [
+      "CE",
+      "Qualicoat"
+    ],
+    "annualRevenueMeur": 28.1,
+    "products_array": [
+      "prd-004",
+      "prd-005",
+      "prd-006"
+    ]
+  },
+  {
+    "id": "comp-03",
+    "name": "Rhein Fenster Technik GmbH",
+    "country": "Germany",
+    "city": "Cologne",
+    "industry": "Fenestration",
+    "foundedYear": 1988,
+    "employeeCount": 420,
+    "website": "rft-fenster.de",
+    "contactEmail": "export@rft-fenster.de",
+    "description": "PVC and hybrid window systems.",
+    "certifications": [
+      "ift Rosenheim",
+      "CE"
+    ],
+    "annualRevenueMeur": 95,
+    "products_array": [
+      "prd-007",
+      "prd-008",
+      "prd-009"
+    ]
+  },
+  {
+    "id": "comp-04",
+    "name": "Alpine Timber Frames Sarl",
+    "country": "Switzerland",
+    "city": "Lausanne",
+    "industry": "Structural timber",
+    "foundedYear": 2005,
+    "employeeCount": 95,
+    "website": "alpineframes.ch",
+    "contactEmail": "projects@alpineframes.ch",
+    "description": "CLT and glulam structural packages.",
+    "certifications": [
+      "PEFC",
+      "FSC"
+    ],
+    "annualRevenueMeur": 18.7,
+    "products_array": [
+      "prd-010",
+      "prd-011",
+      "prd-012"
+    ]
+  },
+  {
+    "id": "comp-05",
+    "name": "Baltic Insulation Group",
+    "country": "Latvia",
+    "city": "Riga",
+    "industry": "Insulation materials",
+    "foundedYear": 2010,
+    "employeeCount": 130,
+    "website": "big-insulation.lv",
+    "contactEmail": "orders@big-insulation.lv",
+    "description": "Mineral wool and EPS for envelopes.",
+    "certifications": [
+      "CE",
+      "ETA"
+    ],
+    "annualRevenueMeur": 22.3,
+    "products_array": [
+      "prd-013",
+      "prd-014",
+      "prd-015"
+    ]
+  },
+  {
+    "id": "comp-06",
+    "name": "Po Valley Machinery",
+    "country": "Italy",
+    "city": "Bologna",
+    "industry": "Construction machinery",
+    "foundedYear": 1976,
+    "employeeCount": 310,
+    "website": "pvmachinery.it",
+    "contactEmail": "intl@pvmachinery.it",
+    "description": "Mixers pumps and compact lifting.",
+    "certifications": [
+      "CE",
+      "ISO 14001"
+    ],
+    "annualRevenueMeur": 67.8,
+    "products_array": [
+      "prd-016",
+      "prd-017",
+      "prd-018"
+    ]
+  },
+  {
+    "id": "comp-07",
+    "name": "Danube Waterproofing s.r.o.",
+    "country": "Czechia",
+    "city": "Prague",
+    "industry": "Waterproofing",
+    "foundedYear": 2003,
+    "employeeCount": 77,
+    "website": "danubewp.cz",
+    "contactEmail": "tech@danubewp.cz",
+    "description": "Liquid membranes and drainage composites.",
+    "certifications": [
+      "CE",
+      "DIBt"
+    ],
+    "annualRevenueMeur": 14.2,
+    "products_array": [
+      "prd-019",
+      "prd-020",
+      "prd-021"
+    ]
+  },
+  {
+    "id": "comp-08",
+    "name": "Lowlands Solar Facades B.V.",
+    "country": "Netherlands",
+    "city": "Eindhoven",
+    "industry": "BIPV facades",
+    "foundedYear": 2015,
+    "employeeCount": 55,
+    "website": "solarfacades.nl",
+    "contactEmail": "hello@solarfacades.nl",
+    "description": "Integrated photovoltaic cladding units.",
+    "certifications": [
+      "IEC",
+      "CE"
+    ],
+    "annualRevenueMeur": 9.6,
+    "products_array": [
+      "prd-022",
+      "prd-023",
+      "prd-024"
+    ]
+  },
+  {
+    "id": "comp-09",
+    "name": "Celtic Fasteners Ltd",
+    "country": "Ireland",
+    "city": "Dublin",
+    "industry": "Anchoring systems",
+    "foundedYear": 1999,
+    "employeeCount": 62,
+    "website": "celticfasteners.ie",
+    "contactEmail": "sales@celticfasteners.ie",
+    "description": "Structural anchors and chemical resins.",
+    "certifications": [
+      "ETA",
+      "CE"
+    ],
+    "annualRevenueMeur": 11.4,
+    "products_array": [
+      "prd-025",
+      "prd-026",
+      "prd-027"
+    ]
+  },
+  {
+    "id": "comp-10",
+    "name": "Pyrenees Tools Cooperative",
+    "country": "France",
+    "city": "Toulouse",
+    "industry": "Power and hand tools",
+    "foundedYear": 1992,
+    "employeeCount": 200,
+    "website": "pyrtools.fr",
+    "contactEmail": "pro@pyrtools.fr",
+    "description": "Site tools and dust-controlled cutting.",
+    "certifications": [
+      "CE",
+      "GS"
+    ],
+    "annualRevenueMeur": 33.9,
+    "products_array": [
+      "prd-028",
+      "prd-029",
+      "prd-030"
+    ]
+  },
+  {
+    "id": "comp-11",
+    "name": "Carpathian Steel Profiles",
+    "country": "Poland",
+    "city": "Krakow",
+    "industry": "Structural steel",
+    "foundedYear": 2008,
+    "employeeCount": 290,
+    "website": "csp-steel.pl",
+    "contactEmail": "exports@csp-steel.pl",
+    "description": "Hot-rolled sections and custom fabrications.",
+    "certifications": [
+      "EN 1090",
+      "CE"
+    ],
+    "annualRevenueMeur": 51.2,
+    "products_array": [
+      "prd-031",
+      "prd-032",
+      "prd-033"
+    ]
+  },
+  {
+    "id": "comp-12",
+    "name": "Aegean Acoustics SA",
+    "country": "Greece",
+    "city": "Athens",
+    "industry": "Acoustic panels",
+    "foundedYear": 2011,
+    "employeeCount": 88,
+    "website": "aegeanacoustics.gr",
+    "contactEmail": "info@aegeanacoustics.gr",
+    "description": "Wall and ceiling acoustic treatment systems.",
+    "certifications": [
+      "CE",
+      "ISO 9001"
+    ],
+    "annualRevenueMeur": 13.5,
+    "products_array": [
+      "prd-034",
+      "prd-035",
+      "prd-036"
+    ]
+  }
+]

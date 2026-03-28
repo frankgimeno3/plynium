@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import React, { FC, useState } from 'react';
 import AuthenticationService from "@/app/components/service/AuthenticationService";
 
@@ -19,7 +20,7 @@ const Login: FC<LoginProps> = ({ }) => {
             const roles: any = payload['cognito:groups'] || [];
             const isAdmin = roles.includes('admin');
             if (isAdmin) {
-                window.location.href = '/logged/admin';  // recarga completa
+                window.location.href = '/logged/admindashboard';
                 return;
             }
             window.location.href = '/logged/dashboard';  // recarga completa
@@ -93,6 +94,21 @@ const Login: FC<LoginProps> = ({ }) => {
                 >
                     Login
                 </button>
+
+                <div className="flex flex-col gap-2 text-center text-sm">
+                    <Link
+                        href="/home/auth/forgot"
+                        className="text-gray-200 hover:text-white"
+                    >
+                        Forgot password?
+                    </Link>
+                    <p className="text-gray-300">
+                        Don&apos;t have an account?{" "}
+                        <Link href="/home/auth/signup" className="text-[#DA6D00] hover:text-[#ff8c2a] font-medium">
+                            Sign up
+                        </Link>
+                    </p>
+                </div>
             </form>
         </div>
     );

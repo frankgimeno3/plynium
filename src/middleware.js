@@ -26,20 +26,13 @@ async function fetchNewTokens(refresh_token) {
   return await response.json();
 }
 
+const LOGIN_PATH = "/home/auth/login";
+
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
-  // Rutas públicas que no necesitan autenticación
-  const publicPaths = [
-    "/",
-    "/en/auth/login",
-    "/en/auth/register",
-    "/favicon.ico",
-    "/api/validate-token",
-  ];
-
-  if (publicPaths.some((path) => pathname.startsWith(path))) {
-    // Si la ruta es pública, dejamos pasar sin validación
+  // Solo las rutas bajo /logged requieren sesión; el resto del sitio es público
+  if (!pathname.startsWith("/logged")) {
     return NextResponse.next();
   }
 
@@ -47,8 +40,7 @@ export async function middleware(request) {
   const username = request.cookies.get(`CognitoIdentityServiceProvider.${COGNITO.CLIENT_ID}.LastAuthUser`)?.value;
 
   if (!username) {
-    // No hay usuario, redirigimos a login
-    return NextResponse.redirect(new URL("/en/auth/login", request.url));
+    return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
   }
 
   const cookieKeys = {
@@ -59,7 +51,7 @@ export async function middleware(request) {
 
   const refreshToken = request.cookies.get(cookieKeys.refresh)?.value;
   if (!refreshToken) {
-    return NextResponse.redirect(new URL("/en/auth/login", request.url));
+    return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
   }
 
   let idToken = request.cookies.get(cookieKeys.id)?.value;
@@ -99,13 +91,8 @@ export async function middleware(request) {
       return response;
     } catch (e) {
       console.log("Error: ", e)
-      return NextResponse.redirect(new URL("/en/auth/login", request.url));
+      return NextResponse.redirect(new URL(LOGIN_PATH, request.url));
     }
-  }
-
-  // Si el usuario está validado y está en ruta pública, podrías redirigir al dashboard:
-  if (pathname === "/en/auth/login" || pathname === "/en/auth/register") {
-    return NextResponse.redirect(new URL("/logged/dashboard", request.url));
   }
 
   return NextResponse.next();

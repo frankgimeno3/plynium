@@ -7,15 +7,9 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Fondo claro fijo: evita texto claro del sistema (dark mode) sobre main bg-gray-100 */
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #171717;
+  background: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
