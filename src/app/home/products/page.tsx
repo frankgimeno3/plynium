@@ -1,6 +1,13 @@
+import DirectoryListingClient from "@/app/components/directory/DirectoryListingClient";
 import { products } from "@/app/components/directory/getDirectoryData";
-import ProductsDirectoryClient from "./ProductsDirectoryClient";
 
 export default function ProductsDirectoryPage() {
-  return <ProductsDirectoryClient rows={products} />;
+  return (
+    <DirectoryListingClient
+      variant="products"
+      title="Products directory"
+      basePath="/home/products"
+      rows={products}
+    />
+  );
 }

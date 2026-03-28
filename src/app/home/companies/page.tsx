@@ -1,6 +1,13 @@
+import DirectoryListingClient from "@/app/components/directory/DirectoryListingClient";
 import { companies } from "@/app/components/directory/getDirectoryData";
-import CompaniesDirectoryClient from "./CompaniesDirectoryClient";
 
 export default function CompaniesDirectoryPage() {
-  return <CompaniesDirectoryClient rows={companies} />;
+  return (
+    <DirectoryListingClient
+      variant="companies"
+      title="Companies directory"
+      basePath="/home/companies"
+      rows={companies}
+    />
+  );
 }

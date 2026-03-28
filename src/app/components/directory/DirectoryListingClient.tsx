@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import type { Company, Product } from "./types";
 
 const PAGE_SIZE = 10;
 
@@ -10,13 +11,40 @@ export type DirectoryColumn<T> = {
   accessor: (row: T) => string;
 };
 
-type DirectoryListingClientProps<T extends { id: string }> = {
-  title: string;
-  basePath: string;
-  rows: T[];
-  columns: DirectoryColumn<T>[];
-  filterPlaceholder?: string;
-};
+const PRODUCT_COLUMNS: DirectoryColumn<Product>[] = [
+  { label: "Name", accessor: (r) => r.name },
+  { label: "SKU", accessor: (r) => r.sku },
+  { label: "Category", accessor: (r) => r.category },
+  { label: "Price (€)", accessor: (r) => (r.priceEur > 0 ? r.priceEur.toFixed(2) : "Quote") },
+  { label: "Unit", accessor: (r) => r.unit },
+  { label: "Company", accessor: (r) => r.companyName },
+];
+
+const COMPANY_COLUMNS: DirectoryColumn<Company>[] = [
+  { label: "Name", accessor: (r) => r.name },
+  { label: "Country", accessor: (r) => r.country },
+  { label: "City", accessor: (r) => r.city },
+  { label: "Industry", accessor: (r) => r.industry },
+  { label: "Employees", accessor: (r) => String(r.employeeCount) },
+  { label: "Products", accessor: (r) => String(r.products_array.length) },
+  { label: "Revenue (M€)", accessor: (r) => r.annualRevenueMeur.toFixed(1) },
+];
+
+export type DirectoryListingClientProps =
+  | {
+      variant: "products";
+      title: string;
+      basePath: string;
+      rows: Product[];
+      filterPlaceholder?: string;
+    }
+  | {
+      variant: "companies";
+      title: string;
+      basePath: string;
+      rows: Company[];
+      filterPlaceholder?: string;
+    };
 
 function matchesFilter<T extends object>(row: T, q: string): boolean {
   if (!q.trim()) return true;
@@ -30,13 +58,19 @@ function matchesFilter<T extends object>(row: T, q: string): boolean {
   return false;
 }
 
-export default function DirectoryListingClient<T extends { id: string }>({
+function DirectoryListingInner<T extends { id: string }>({
   title,
   basePath,
   rows,
   columns,
   filterPlaceholder = "Filter table…",
-}: DirectoryListingClientProps<T>) {
+}: {
+  title: string;
+  basePath: string;
+  rows: T[];
+  columns: DirectoryColumn<T>[];
+  filterPlaceholder?: string;
+}) {
   const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
 
@@ -156,5 +190,32 @@ export default function DirectoryListingClient<T extends { id: string }>({
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DirectoryListingClient(props: DirectoryListingClientProps) {
+  if (props.variant === "products") {
+    return (
+      <DirectoryListingInner<Product>
+        title={props.title}
+        basePath={props.basePath}
+        rows={props.rows}
+        columns={PRODUCT_COLUMNS}
+        filterPlaceholder={
+          props.filterPlaceholder ?? "Filter by name, SKU, company, category, standard…"
+        }
+      />
+    );
+  }
+  return (
+    <DirectoryListingInner<Company>
+      title={props.title}
+      basePath={props.basePath}
+      rows={props.rows}
+      columns={COMPANY_COLUMNS}
+      filterPlaceholder={
+        props.filterPlaceholder ?? "Filter by name, country, industry, certifications…"
+      }
+    />
   );
 }
